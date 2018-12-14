@@ -8,10 +8,13 @@ os:
   - osx
 
 install:
+  - sudo apt-get install avahi-daemon
+  - sudo lsof -i :5353
+  - cat /etc/avahi/avahi-daemon.conf
   - dotnet restore
 
 script:
   - dotnet build -c Release --no-restore --framework netstandard2 ./src
-  - dotnet test  -c Release --no-restore --framework netcoreapp2 ./test
-  - dotnet test  -c Release --no-restore --framework netcoreapp2.1 ./test
+#  - dotnet test  -c Release --no-restore --framework netcoreapp2 ./test
+#  - dotnet test  -c Release --no-restore --framework netcoreapp2.1 ./test
   - dotnet test  -c Release --no-restore --framework netcoreapp2.2 ./test
